@@ -1,6 +1,7 @@
 #include "header.h"
 
-int main(){
+int main(int argc,char *argv[]){
+	std::string file=argv[1];
 
 	double g=-9.81,
 	       m=1.0,
@@ -109,7 +110,7 @@ int main(){
 		vx+=v0x;
 		vy+=v0y;
 	}
-	printAndWrite(listT,listX,listY,listVx,listVy,listAx,listAy,maxX,maxY);
+	printAndWrite(listT,listX,listY,listVx,listVy,listAx,listAy,maxX,maxY,file);
 
 	return 0;
 }
