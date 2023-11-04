@@ -9,8 +9,8 @@ int main(){
 	       ar=0.078,
 	       dt=0.01,
 
-	       v0x=0.0,
-	       v0y=0.0,
+	       v0x=5.0,
+	       v0y=20.0,
 
 	       x0=0.0,
 	       y0=0.0,
@@ -52,7 +52,13 @@ int main(){
 	std::cout<<"hello world"<<std::endl;
 
 	while(y>=0.0){
-		printAndWrite(listT,listX,listY,listVx,listVy,listAx,listAy);
+		listT.push_back(t);
+		listX.push_back(x);
+		listY.push_back(y);
+		listVx.push_back(vx);
+		listVy.push_back(vy);
+		listAx.push_back(ax);
+		listAy.push_back(ay);
 
 		t+=dt;
 
@@ -65,10 +71,12 @@ int main(){
 			maxX=x+x0;
 		}
 
+		x+=x0;
+
 		y0=v0y*dt;
 
 		if(y<(y+y0)){
-			maxY=x+x0;
+			maxY=y+y0;
 		}
 
 		y+=y0;
@@ -101,6 +109,7 @@ int main(){
 		vx+=v0x;
 		vy+=v0y;
 	}
+	printAndWrite(listT,listX,listY,listVx,listVy,listAx,listAy,maxX,maxY);
 
 	return 0;
 }
