@@ -1,3 +1,0 @@
-/home/lloyd/Desktop/c++/build/CMakeFiles/projectile_sim.dir
-/home/lloyd/Desktop/c++/build/CMakeFiles/edit_cache.dir
-/home/lloyd/Desktop/c++/build/CMakeFiles/rebuild_cache.dir
