@@ -22,6 +22,6 @@ void printAndWrite(std::vector<double> listT,std::vector<double> listX,std::vect
 			<<listAy.at(i)
 			<<std::endl;
 	}
-	std::cout<<"maxX: "<<maxX<<"\nmayY: "<<maxY<<std::endl;
+	std::cout<<"maxX: "<<maxX<<"\nmaxY: "<<maxY<<std::endl;
 }
 
