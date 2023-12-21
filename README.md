@@ -16,7 +16,7 @@ To define the variables edit the `src/projectile.h` and `src/environment.h` file
 To build and run the program type:
 ```bash
 $ ./build.sh
-$ ./build/projectile_sim filename
+$ ./run.sh filename
 ```
 
 This outputs data to `filename.csv`.
