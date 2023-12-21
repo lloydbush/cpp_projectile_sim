@@ -1,17 +1,19 @@
 #include "header.h"
+#include "projectile.h"
+#include "environment.h"
 
 int main(int argc,char *argv[]){
 	std::string file=argv[1];
 
-	double g=-9.81,
-	       m=1.0,
-	       rho=1.22,
-	       cd=0.47,
-	       ar=0.078,
-	       dt=0.01,
+	double g=e.g, //e
+	       m=p.m, //p
+	       rho=e.rho, //e
+	       cd=p.cd, //p
+	       ar=p.ar, //p
+	       dt=e.dt, //e
 
-	       v0x=5.0,
-	       v0y=20.0,
+	       v0x=p.v0x, //p
+	       v0y=p.v0y, //p
 
 	       x0=0.0,
 	       y0=0.0,
