@@ -1,4 +1,4 @@
 src/*.swp
 *.csv
-build/*
+build/
 key.txt
