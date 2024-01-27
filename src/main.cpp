@@ -8,7 +8,7 @@ int main(int argc,char *argv[]){
 	readEnv(e); // read the "environment.cfg" file
 	readProj(p); // read the "projectile.cfg" file
 
-	std::cout << "p.m=" << p.m << "\n";
+	// std::cout << "p.m=" << p.m << "\n";
 
 	double g=e.g,
 	       m=p.m,
