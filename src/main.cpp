@@ -5,15 +5,20 @@
 int main(int argc,char *argv[]){
 	std::string file=argv[1];
 
-	double g=e.g, //e
-	       m=p.m, //p
-	       rho=e.rho, //e
-	       cd=p.cd, //p
-	       ar=p.ar, //p
-	       dt=e.dt, //e
+	readEnv(); // read the "environment.cfg" file
+	readProj(); // read the "projectile.cfg" file
 
-	       v0x=p.v0x, //p
-	       v0y=p.v0y, //p
+	std::cout << "p.m=" << p.m << "\n";
+
+	double g=e.g,
+	       m=p.m,
+	       rho=e.rho,
+	       cd=p.cd,
+	       ar=p.ar,
+	       dt=e.dt,
+
+	       v0x=p.v0x,
+	       v0y=p.v0y,
 
 	       x0=0.0,
 	       y0=0.0,
