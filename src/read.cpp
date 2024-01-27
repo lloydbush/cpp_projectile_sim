@@ -1,35 +1,33 @@
 #include "header.h"
-#include "environment.h"
-#include "projectile.h"
 
-int setVar(char target,std::string var,std::string num){
+int setVar(projectile &p,std::string var,std::string num){
 	double numDbl=std::stod(num); // convert string num to double numDbl
-	std::cout << "setVar(" << target << "," << var << "," << num << ")\n";
+	std::cout << "setVar(" << "p," << var << "," << num << ")\n";
 	
-	if(target=='e'){
-		if(var=="g"){e.g=numDbl;}
-		else if(var=="rho"){e.rho=numDbl;}
-		else if(var=="dt"){e.dt=numDbl;}
-		else{std::cout << "ERROR: invalid var in function setVar\n"; return 1;}
-	}
-	else if(target=='p'){
-		if(var=="m"){p.m=numDbl;}
-		else if(var=="cd"){p.cd=numDbl;}
-		else if(var=="ar"){p.ar=numDbl;}
-		else if(var=="v0x"){p.v0x=numDbl;}
-		else if(var=="v0y"){p.v0y=numDbl;}
-		else{std::cout << "ERROR: invalid var in function setVar\n"; return 1;}
-	}
-	else{
-		std::cout << "ERROR: invalid target option in function setVar\n";
-		return 1;
-	}
+	if(var=="m"){p.m=numDbl;}
+	else if(var=="cd"){p.cd=numDbl;}
+	else if(var=="ar"){p.ar=numDbl;}
+	else if(var=="v0x"){p.v0x=numDbl;}
+	else if(var=="v0y"){p.v0y=numDbl;}
+	else{std::cout << "ERROR: invalid var in function setVar\n"; return 1;}
+
+	return 0;
+}
+
+int setVar(environment &e,std::string var,std::string num){
+	double numDbl=std::stod(num); // convert string num to double numDbl
+	std::cout << "setVar(" << "e," << var << "," << num << ")\n";
+	
+	if(var=="g"){e.g=numDbl;}
+	else if(var=="rho"){e.rho=numDbl;}
+	else if(var=="dt"){e.dt=numDbl;}
+	else{std::cout << "ERROR: invalid var in function setVar\n"; return 1;}
 
 	return 0;
 }
 
 // READ ENVIRONMENT
-int readEnv(){
+int readEnv(environment &e){
 	std::ifstream env("environment.cfg");
 
 	// check for env
@@ -82,7 +80,7 @@ int readEnv(){
 					k++;
 				}
 
-				setVar('e',var,num); // char target ('e' for env and 'p' for projectile)
+				setVar(e,var,num); // char target ('e' for env and 'p' for projectile)
 						     // std::string var (variable name)
 						     // std::string num (number value will be converted)
 
@@ -105,7 +103,7 @@ int readEnv(){
 }
 
 // READ PROJECTILE
-int readProj(){
+int readProj(projectile &p){
 	std::ifstream proj("projectile.cfg");
 
 	// check for proj
@@ -158,7 +156,7 @@ int readProj(){
 					k++;
 				}
 
-				setVar('p',var,num); // char target ('e' for env and 'p' for projectile)
+				setVar(p,var,num); // char target ('e' for env and 'p' for projectile)
 						     // std::string var (variable name)
 						     // std::string num (number value will be converted)
 
