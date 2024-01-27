@@ -1,5 +1,23 @@
 # projectile_sim
-This program simulates the flight of a projectile based on given variables.
+This program simulates the flight of a projectile based on given variables.\
+The velocity vector is not reliant on the starting angle, so that other factors, such as wind, might be accounted for.\
+Otherwise use:
+<pre>
+      /|
+     / |
+  v /  |
+   /   |v0y
+  /    |
+ /     |
+/a_____|
+   v0x
+</pre>
+cos(a)=_v0x/v_\
+sin(a)=_v0y/v_
+
+Therefore:
+_v0x_=cos(a)\*v\
+_v0y_=sin(a)\*v
 
 ## Dependencies
 - GNU/Linux based distribution
@@ -7,11 +25,12 @@ This program simulates the flight of a projectile based on given variables.
 - cmake
 - python3
     - matplotlib
-    - csv
+    - pandas
+    - sys
 
-I used: `Debian GNU/Linux 12 (bookworm)`, `gcc 12.2.0`, `cmake 3.25.1`, `Python 3.11.2`
+(I used: `Debian GNU/Linux 12 (bookworm)`, `gcc 12.2.0`, `cmake 3.25.1`, `Python 3.11.2`)
 
-To define the variables edit the `src/projectile.h` and `src/environment.h` files.
+To define the variables edit the `projectile.cfg` and `environment.cfg` files.
 
 To build and run the program type:
 ```bash
@@ -21,5 +40,5 @@ $ ./run.sh filename
 
 This outputs data to `filename.csv`.
 
-This file was last edited (dd.mm.yyyy): _21.12.2023_
+This file was last edited (dd.mm.yyyy): _27.01.2024_
 
