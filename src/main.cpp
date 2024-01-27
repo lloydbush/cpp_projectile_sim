@@ -1,12 +1,12 @@
 #include "header.h"
-#include "projectile.h"
-#include "environment.h"
 
 int main(int argc,char *argv[]){
 	std::string file=argv[1];
 
-	readEnv(); // read the "environment.cfg" file
-	readProj(); // read the "projectile.cfg" file
+	projectile p; // projectile
+	environment e; // environment
+	readEnv(e); // read the "environment.cfg" file
+	readProj(p); // read the "projectile.cfg" file
 
 	std::cout << "p.m=" << p.m << "\n";
 
