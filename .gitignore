@@ -1,3 +1,4 @@
 src/*.swp
+test/*.swp
 *.csv
 build/
