@@ -11,3 +11,5 @@ void printAndWrite(std::vector<double> listT,std::vector<double> listX,std::vect
 int readEnv(environment &e);
 int readProj(projectile &p);
 
+int logo();
+
