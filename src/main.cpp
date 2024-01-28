@@ -3,6 +3,8 @@
 int main(int argc,char *argv[]){
 	std::string file=argv[1];
 
+	logo(); // print logo
+
 	projectile p; // projectile
 	environment e; // environment
 	readEnv(e); // read the "environment.cfg" file
@@ -118,6 +120,8 @@ int main(int argc,char *argv[]){
 		vy+=v0y;
 	}
 	printAndWrite(listT,listX,listY,listVx,listVy,listAx,listAy,maxX,maxY,file);
+
+	logo(); // print logo
 
 	return 0;
 }
