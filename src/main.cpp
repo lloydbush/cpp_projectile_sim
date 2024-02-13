@@ -1,4 +1,5 @@
 #include "header.h"
+#include <math.h>
 
 int main(int argc,char *argv[]){
 	std::string file=argv[1];
@@ -77,7 +78,7 @@ int main(int argc,char *argv[]){
 
 		x0=v0x*dt;
 
-		if(x<(x+x0)){
+		if(x<(fabs(x+x0))){
 			maxX=x+x0;
 		}
 
@@ -85,7 +86,7 @@ int main(int argc,char *argv[]){
 
 		y0=v0y*dt;
 
-		if(y<(y+y0)){
+		if(y<(fabs(y+y0))){
 			maxY=y+y0;
 		}
 
