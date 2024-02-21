@@ -1,5 +1,6 @@
 #include "header.h"
 
+// set projectile variable
 int setVar(projectile &p,std::string var,std::string num){
 	double numDbl=std::stod(num); // convert string num to double numDbl
 	std::cout << "setVar(" << "p," << var << "," << num << ")\n";
@@ -14,6 +15,7 @@ int setVar(projectile &p,std::string var,std::string num){
 	return 0;
 }
 
+// set environment variable
 int setVar(environment &e,std::string var,std::string num){
 	double numDbl=std::stod(num); // convert string num to double numDbl
 	std::cout << "setVar(" << "e," << var << "," << num << ")\n";
@@ -177,24 +179,4 @@ int readProj(projectile &p){
 
 	return 0;
 }
-
-/*
-int main(){
-	readEnv();
-	readProj();
-
-	std::cout
-		<< "g=\t" << e.g << "\n"
-		<< "rho=\t" << e.rho << "\n"
-		<< "dt=\t" << e.dt << "\n"
-
-		<< "m=\t" << p.m << "\n"
-		<< "cd=\t" << p.cd << "\n"
-		<< "ar=\t" << p.ar << "\n"
-		<< "v0x=\t" << p.v0x << "\n"
-		<< "v0y=\t" << p.v0y << "\n";
-
-	return 0;
-}
-*/
 
