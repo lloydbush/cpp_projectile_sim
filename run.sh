@@ -1,4 +1,5 @@
 #! /usr/bin/bash
+# runs the simulation and graphs the results
 
 if [ $1 ]
 then

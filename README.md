@@ -1,6 +1,6 @@
 # projectile_sim
 This program simulates the flight of a projectile based on given variables.\
-The velocity vector is not reliant on the starting angle, so that other factors, such as wind, might be accounted for.\
+For flexibility the velocity vector is not reliant on the starting angle.\
 Otherwise use:
 <pre>
       /|
@@ -35,10 +35,10 @@ To define the variables edit the `projectile.cfg` and `environment.cfg` files.
 To build and run the program type:
 ```bash
 $ ./build.sh
-$ ./run.sh filename
+$ ./run.sh <filename>
 ```
 
 This outputs data to `filename.csv`.
 
-This file was last edited (dd.mm.yyyy): _27.01.2024_
+This file was last edited (dd.mm.yyyy): _20.02.2024_
 
