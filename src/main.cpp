@@ -5,7 +5,8 @@
  * A copy of the License should have been delivered with the Software.
  * If not it can be found at https://mit-license.org.
  *
- * projectile_sim is a simple projectile simulator, which is capable of calculating the trajectory of a projectile through the air given starting parameters.
+ * projectile_sim is a simple projectile simulator, which is capable of calculating the trajectory
+ * of a projectile through the air given starting parameters.
  * This being a personal project there is no guarantee for it's accuracy.
  *
  */
