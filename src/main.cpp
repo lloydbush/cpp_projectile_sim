@@ -87,6 +87,8 @@ int main(int argc,char *argv[]){
 		listAx.push_back(ax);
 		listAy.push_back(ay);
 
+        write(t,x,y,vx,vy,ax,ay,maxX,maxY,file);
+
 		t+=dt; // increment time by timestep
 
 		v0x=vx;
@@ -145,7 +147,8 @@ int main(int argc,char *argv[]){
 		vy+=v0y; // update y velocity
 	}
 
-	printAndWrite(listT,listX,listY,listVx,listVy,listAx,listAy,maxX,maxY,file); // print and write the results
+	// printAndWrite(listT,listX,listY,listVx,listVy,listAx,listAy,maxX,maxY,file); // print and write the results
+    std::cout<<"=====\nt="<<t<<"\nmaxX="<<maxX<<"\nmaxY="<<maxY<<"\n=====\n";
 
 	logo(); // print logo
 

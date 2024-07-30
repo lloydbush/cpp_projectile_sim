@@ -8,6 +8,19 @@
 #include "environment.h"
 #include "projectile.h"
 
+void write(
+        double t,
+        double x,
+        double y,
+        double vx,
+        double vy,
+        double ax,
+        double ay,
+        double maxX,
+        double maxY,
+        std::string file);
+
+/*
 void printAndWrite(
         std::vector<double> listT,
         std::vector<double> listX,
@@ -19,6 +32,7 @@ void printAndWrite(
         double maxX,
         double maxY,
         std::string file);
+*/
 
 int readEnv(environment &e);
 int readProj(projectile &p);
