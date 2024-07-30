@@ -28,7 +28,7 @@ _v0y_=sin(a)\*v
     - pandas
     - sys
 
-(I used: `Debian GNU/Linux 12 (bookworm)`, `gcc 12.2.0`, `cmake 3.25.1`, `Python 3.11.2`)
+(I used: `Debian GNU/Linux 12.6 (bookworm)`, `gcc 12.2.0`, `cmake 3.25.1`, `Python 3.11.2`)
 
 To define the variables edit the `projectile.cfg` and `environment.cfg` files.
 
@@ -40,5 +40,5 @@ $ ./run.sh <filename>
 
 This outputs data to `filename.csv`.
 
-This file was last edited (dd.mm.yyyy): _20.02.2024_
+This file was last edited (dd.mm.yyyy): _30.07.2024_
 
