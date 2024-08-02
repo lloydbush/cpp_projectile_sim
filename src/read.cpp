@@ -52,31 +52,39 @@ int readEnv(environment &e){
 	// remove comments from .cfg file
 	std::string text;
 
-	for(int i=0;i<envVec.size();i++){ // for text in envVec
+	for(size_t i=0;i<envVec.size();i++){ // for text in envVec
 		text=envVec.at(i);
 
 		// check for the '#' character as a comment delimiter
-		for(int j=0;j<text.size();j++){ // for char in text
+		for(size_t j=0;j<text.size();j++){ // for char in text
 			if(text[j]=='#'){
 				text.erase(j); // erase chars after and including comment delimeter
 			}
+            else if(text[j]=='='){
+                if(text[j+1]==' '){
+                    text.erase(j+1,1);
+                }
+
+                if(text[j-1]==' '){
+                    text.erase(j-1,1);
+                }
+            }
 		}
 
 		// check for the '=' char and read number till ' ' character
-		for(int j=0;j<text.size();j++){ // for char in text
+		for(size_t j=0;j<text.size();j++){ // for char in text
 			if(text[j]=='='){ // check for '=' char
 				std::string var;
 
 				// add chars from 0 to '=' to var
-				for(int k=0;k<j;k++){
+				for(size_t k=0;k<j;k++){
 					var+=text[k];
 				}
 
 				std::string num;
-				int k=1;
 
-				// add chars from after '=' to ' ' or eol to num
-				while(text[j+k]!=' ' && j+k<text.size()){
+				// add chars from after '=' to ' ' or eol or '#' to num
+				for(size_t k=1;j+k<text.size() && text[j+k]!=' ' && text[j+k]!='#';k++){
 					num+=text[j+k];
 					// std::cout << j << " + " << k << " = " << num << "\n";
 					k++;
@@ -91,7 +99,7 @@ int readEnv(environment &e){
 
 		}
 
-		envVec.at(i)=text; // replace old text (eith comment) with new text (without comment)
+		envVec.at(i)=text; // replace old text (with comment) with new text (without comment)
 	}
 	
 	/*
@@ -128,31 +136,39 @@ int readProj(projectile &p){
 	// remove comments from .cfg file
 	std::string text;
 
-	for(int i=0;i<projVec.size();i++){ // for text in projVec
+	for(size_t i=0;i<projVec.size();i++){ // for text in projVec
 		text=projVec.at(i);
 
 		// check for the '#' character as a comment delimiter
-		for(int j=0;j<text.size();j++){ // for char in text
+		for(size_t j=0;j<text.size();j++){ // for char in text
 			if(text[j]=='#'){
 				text.erase(j); // erase chars after and including comment delimeter
 			}
+            else if(text[j]=='='){
+                if(text[j+1]==' '){
+                    text.erase(j+1,1);
+                }
+
+                if(text[j-1]==' '){
+                    text.erase(j-1,1);
+                }
+            }
 		}
 
 		// check for the '=' char and read number till ' ' character
-		for(int j=0;j<text.size();j++){ // for char in text
+		for(size_t j=0;j<text.size();j++){ // for char in text
 			if(text[j]=='='){ // check for '=' char
 				std::string var;
 
 				// add chars from 0 to '=' to var
-				for(int k=0;k<j;k++){
+				for(size_t k=0;k<j;k++){
 					var+=text[k];
 				}
 
 				std::string num;
-				int k=1;
 
-				// add chars from after '=' to ' ' or eol to num
-				while(text[j+k]!=' ' && j+k<text.size()){
+				// add chars from after '=' to ' ' or eol or '#' to num
+				for(size_t k=1;j+k<text.size() && text[j+k]!=' ' && text[j+k]!='#';k++){
 					num+=text[j+k];
 					// std::cout << j << " + " << k << " = " << num << "\n";
 					k++;
@@ -167,7 +183,7 @@ int readProj(projectile &p){
 
 		}
 
-		projVec.at(i)=text; // replace old text (eith comment) with new text (without comment)
+		projVec.at(i)=text; // replace old text (with comment) with new text (without comment)
 	}
 	
 	/*
