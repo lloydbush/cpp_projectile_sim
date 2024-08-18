@@ -51,25 +51,33 @@ int readEnv(environment &e){
 
 	// remove comments from .cfg file
 	std::string text;
+    std::string new_text;
 
 	for(size_t i=0;i<envVec.size();i++){ // for text in envVec
 		text=envVec.at(i);
+        new_text="";
 
-		// check for the '#' character as a comment delimiter
-		for(size_t j=0;j<text.size();j++){ // for char in text
-			if(text[j]=='#'){
-				text.erase(j); // erase chars after and including comment delimeter
-			}
-            else if(text[j]=='='){
-                if(text[j+1]==' '){
-                    text.erase(j+1,1);
-                }
+        bool hasEqual=false; // has there been an equal sign yet?
 
-                if(text[j-1]==' '){
-                    text.erase(j-1,1);
-                }
+        for(char c : text){
+            if(c=='#'){
+                break;
             }
-		}
+            else if(c!=' '){
+                new_text+=c;
+            }
+
+            if(c=='='){
+                hasEqual=true;
+            }
+        }
+
+        if(!hasEqual){
+            continue;
+        }
+
+        text=new_text;
+        DEBUG_MSSG("new_text=" << new_text)
 
 		// check for the '=' char and read number till ' ' character
 		for(size_t j=0;j<text.size();j++){ // for char in text
@@ -81,14 +89,17 @@ int readEnv(environment &e){
 					var+=text[k];
 				}
 
+                DEBUG_MSSG("var=" << var)
+
 				std::string num;
 
-				// add chars from after '=' to ' ' or eol or '#' to num
-				for(size_t k=1;j+k<text.size() && text[j+k]!=' ' && text[j+k]!='#';k++){
+				// add chars from after '=' to num
+				for(size_t k=1;j+k<text.size();k++){
 					num+=text[j+k];
-					// std::cout << j << " + " << k << " = " << num << "\n";
-					k++;
+					DEBUG_MSSG(j << " + " << k << " : " << num);
 				}
+
+                DEBUG_MSSG("num=" << num)
 
 				setVar(e,var,num); // char target ('e' for env and 'p' for projectile)
 						     // std::string var (variable name)
@@ -113,7 +124,7 @@ int readEnv(environment &e){
 }
 
 // READ PROJECTILE
-int readProj(projectile &p){
+int readProj(projectile &e){
 	std::ifstream proj("projectile.cfg");
 
 	// check for proj
@@ -135,25 +146,33 @@ int readProj(projectile &p){
 
 	// remove comments from .cfg file
 	std::string text;
+    std::string new_text;
 
 	for(size_t i=0;i<projVec.size();i++){ // for text in projVec
 		text=projVec.at(i);
+        new_text="";
 
-		// check for the '#' character as a comment delimiter
-		for(size_t j=0;j<text.size();j++){ // for char in text
-			if(text[j]=='#'){
-				text.erase(j); // erase chars after and including comment delimeter
-			}
-            else if(text[j]=='='){
-                if(text[j+1]==' '){
-                    text.erase(j+1,1);
-                }
+        bool hasEqual=false; // has there been an equal sign yet?
 
-                if(text[j-1]==' '){
-                    text.erase(j-1,1);
-                }
+        for(char c : text){
+            if(c=='#'){
+                break;
             }
-		}
+            else if(c!=' '){
+                new_text+=c;
+            }
+
+            if(c=='='){
+                hasEqual=true;
+            }
+        }
+
+        if(!hasEqual){
+            continue;
+        }
+
+        text=new_text;
+        DEBUG_MSSG("new_text=" << new_text)
 
 		// check for the '=' char and read number till ' ' character
 		for(size_t j=0;j<text.size();j++){ // for char in text
@@ -165,16 +184,19 @@ int readProj(projectile &p){
 					var+=text[k];
 				}
 
+                DEBUG_MSSG("var=" << var)
+
 				std::string num;
 
-				// add chars from after '=' to ' ' or eol or '#' to num
-				for(size_t k=1;j+k<text.size() && text[j+k]!=' ' && text[j+k]!='#';k++){
+				// add chars from after '=' to num
+				for(size_t k=1;j+k<text.size();k++){
 					num+=text[j+k];
-					// std::cout << j << " + " << k << " = " << num << "\n";
-					k++;
+					DEBUG_MSSG(j << " + " << k << " : " << num);
 				}
 
-				setVar(p,var,num); // char target ('e' for env and 'p' for projectile)
+                DEBUG_MSSG("num=" << num)
+
+				setVar(e,var,num); // char target ('e' for proj and 'p' for projectile)
 						     // std::string var (variable name)
 						     // std::string num (number value will be converted)
 
