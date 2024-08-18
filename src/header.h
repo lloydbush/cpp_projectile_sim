@@ -8,6 +8,16 @@
 #include "environment.h"
 #include "projectile.h"
 
+//#define DEBUG // uncomment for DEBUG info
+
+#ifdef DEBUG
+#define DEBUG_MSSG(mssg) std::cout << "DEBUG: (" << __FILE__ << ":" << __LINE__ << "): " << mssg << "\n";
+#else
+#define DEBUG_MSSG(mssg)
+#endif
+
+#define ERROR(mssg) std::cout << "ERROR: (" << __FILE__ << ":" << __LINE__ << "): " << mssg << "\n";
+
 void write(
         double t,
         double x,
