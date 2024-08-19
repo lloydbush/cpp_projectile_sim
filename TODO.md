@@ -1,4 +1,4 @@
 put bins in bin/ not build/
 add RK4
-make parser more robust (trim whitespace)
 add optimizer (eg. optimal angle for highest/longest shoot)
+
