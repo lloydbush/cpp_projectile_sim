@@ -1,6 +1,5 @@
-/*
+/* Copyright 2024 lorax
  *
- * (c) Lloyd Bush 2024
  * This Project is distributed under the MIT-License.
  * A copy of the License should have been delivered with the Software.
  * If not it can be found at https://mit-license.org.
@@ -11,11 +10,35 @@
  *
  */
 
+#include <sys/types.h>
+
+#include <iostream>
+#include <cmath>
+#include <ctime>
+#include <csignal>
+#include <cstdlib>
+
 #include "./header.h"
-#include <math.h>
+
+void restore_cursor() {
+    std::cout << "\033[?25h";
+}
+
+void handle_interrupt(int signal) {
+    std::cout << "\n";
+    ERROR("program was interrupted")
+    logo();
+    restore_cursor();
+    std::raise(signal);
+    exit(1);
+}
 
 int main(int argc, char *argv[]) {
-    std::string file = argv[1];  // get filename from first command line argument
+    std::atexit(restore_cursor);  // show cursor at program exit
+    std::signal(SIGINT, handle_interrupt);
+    std::cout << "\033[?25l";  // hide terminal cursor
+
+    std::string file = argv[1];  // get filename from first command line arg
 
     logo();  // print logo
 
@@ -73,6 +96,9 @@ int main(int argc, char *argv[]) {
         listAx,  // x acceleration list
         listAy;  // y acceleration list
 
+    std::time_t now = std::time(nullptr);
+    std::time_t then = std::time(nullptr);
+
     // std::cout<<"hello world"<<std::endl;
 
     // MAIN LOOP
@@ -88,6 +114,24 @@ int main(int argc, char *argv[]) {
         listAy.push_back(ay);
 
         write(t, x, y, vx, vy, ax, ay, maxX, maxY, file);
+
+        now = std::time(nullptr);  // get current time
+
+        // update loading indicator after a second
+        if (now - then >= 1) {
+            u_short i;
+            char loading[] = {'|', '/', '-', '\\'};
+
+            if (i < sizeof(loading)/sizeof(char)) {
+                i++;
+            } else {
+                i = 0;
+            }
+
+            std::cout << "\b" << loading[i] << std::flush;
+
+            then = std::time(nullptr);
+        }
 
         t+=dt;  // increment time by timestep
 
@@ -120,8 +164,7 @@ int main(int argc, char *argv[]) {
         // adjust x drag force accordingly
         if (vx > 0.0) {
             fdx = -0.5*rho*cd*vx*vx*ar;
-        }
-        else {
+        } else {
             fdx = 0.5*rho*cd*vx*vx*ar;
         }
 
@@ -129,8 +172,7 @@ int main(int argc, char *argv[]) {
         // adjust y drag force accordingly
         if (vy > 0.0) {
             fdy = -0.5*rho*cd*vy*vy*ar;
-        }
-        else {
+        } else {
             fdy = 0.5*rho*cd*vy*vy*ar;
         }
 
@@ -147,8 +189,11 @@ int main(int argc, char *argv[]) {
         vy+=v0y;  // update y velocity
     }
 
-    // printAndWrite(listT,listX,listY,listVx,listVy,listAx,listAy,maxX,maxY,file);  // print and write the results
-    std::cout << "=====\nt = " << t << "\nmaxX = " << maxX << "\nmaxY = " << maxY << "\n=====\n";
+    std::cout
+        << "\n=====\nt = "
+        << t << "\nmaxX = "
+        << maxX << "\nmaxY = "
+        << maxY << "\n=====\n";
 
     logo();  // print logo
 
