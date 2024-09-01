@@ -122,7 +122,7 @@ int main(int argc, char *argv[]) {
             u_short i;
             char loading[] = {'|', '/', '-', '\\'};
 
-            if (i < sizeof(loading)/sizeof(char)) {
+            if (i < sizeof(loading)/sizeof(loading[0])) {
                 i++;
             } else {
                 i = 0;
