@@ -17,6 +17,8 @@
 #include <ctime>
 #include <csignal>
 #include <cstdlib>
+#include <string>
+#include <vector>
 
 #include "./header.h"
 
