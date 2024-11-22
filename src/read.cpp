@@ -1,4 +1,9 @@
 // Copyright 2024 lorax
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <vector>
+
 #include "./header.h"
 
 // set projectile variable
