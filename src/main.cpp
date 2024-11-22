@@ -17,6 +17,8 @@
 #include <ctime>
 #include <csignal>
 #include <cstdlib>
+#include <string>
+#include <vector>
 
 #include "./header.h"
 
@@ -48,53 +50,53 @@ int main(int argc, char *argv[]) {
     readProj(p);  // read the "projectile.cfg" file
 
     // initialise all the variables
-     double g = e.g,  // gravitational acceleration
-           m = p.m,  // projectile mass
-           rho = e.rho,  // air density
-           cd = p.cd,  // projectile coefficient of drag
-           ar = p.ar,  // projectile cross sectional area
-           dt = e.dt,  // timestep
+    double g = e.g,  // gravitational acceleration
+          m = p.m,  // projectile mass
+          rho = e.rho,  // air density
+          cd = p.cd,  // projectile coefficient of drag
+          ar = p.ar,  // projectile cross sectional area
+          dt = e.dt,  // timestep
 
-           v0x = p.v0x,  // x velocity change
-           v0y = p.v0y,  // y velocity change
+          v0x = p.v0x,  // x velocity change
+          v0y = p.v0y,  // y velocity change
 
-           x0 = p.x0,  // x position change
-           y0 = p.y0,  // y position change
+          x0 = p.x0,  // x position change
+          y0 = p.y0,  // y position change
 
-           t = 0.0,  // current time
+          t = 0.0,  // current time
 
-           x = x0,  // current x position
-           y = y0,  // current y position
+          x = x0,  // current x position
+          y = y0,  // current y position
 
-           vx = v0x,
-           vy = v0y,
+          vx = v0x,
+          vy = v0y,
 
-           ax = 0.0,  // current x acceleration
-           ay = 0.0,  // current y acceleration
+          ax = 0.0,  // current x acceleration
+          ay = 0.0,  // current y acceleration
 
-           fx = 0.0,  // current x force
-           fy = 0.0,  // current y force
+          fx = 0.0,  // current x force
+          fy = 0.0,  // current y force
 
-           fg = 0.0,  // current gravitational force
+          fg = 0.0,  // current gravitational force
 
-           fdx = 0.0,  // current x drag force
-           fdy = 0.0,  // current y drag force
+          fdx = 0.0,  // current x drag force
+          fdy = 0.0,  // current y drag force
 
-           maxX = 0.0,  // current maximum x position (flight distance)
-           maxY = 0.0;  // current maximum y position (maximum height)
+          maxX = 0.0,  // current maximum x position (flight distance)
+          maxY = 0.0;  // current maximum y position (maximum height)
 
     // initialise all the lists
-     std::vector<double>
-        listT,  // time list
+    std::vector<double>
+       listT,  // time list
 
-        listX,  // x position list
-        listY,  // y position list
+       listX,  // x position list
+       listY,  // y position list
 
-        listVx,  // x velocity list
-        listVy,  // y velocity list
+       listVx,  // x velocity list
+       listVy,  // y velocity list
 
-        listAx,  // x acceleration list
-        listAy;  // y acceleration list
+       listAx,  // x acceleration list
+       listAy;  // y acceleration list
 
     std::time_t now = std::time(nullptr);
     std::time_t then = std::time(nullptr);
@@ -118,7 +120,7 @@ int main(int argc, char *argv[]) {
         now = std::time(nullptr);  // get current time
 
         // update loading indicator after a second
-        if (now - then >= 1) {
+        if (now - then >= 1.0) {
             u_short i;
             char loading[] = {'|', '/', '-', '\\'};
 
@@ -146,7 +148,7 @@ int main(int argc, char *argv[]) {
             maxX = x+x0;
         }
 
-         x+=x0;  // increment x
+        x+=x0;  // increment x
 
         y0 = v0y*dt;  // update y position change
 
@@ -156,7 +158,7 @@ int main(int argc, char *argv[]) {
             maxY = y+y0;
         }
 
-         y+=y0;  // increment y
+        y+=y0;  // increment y
 
         fg = m*g;  // update gravitational force (constant for this simulation)
 

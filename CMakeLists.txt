@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20.0)
 
-file(GLOB src "*.cpp")
+file(GLOB src "src/*.cpp")
 
 project(projectile_sim)
 

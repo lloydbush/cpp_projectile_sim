@@ -1,3 +1,4 @@
+// Copyright 2024 lorax
 #include <iostream>
 
 // prints the logo
