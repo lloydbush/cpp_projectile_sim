@@ -2,6 +2,6 @@
 
 //PROJECTILE INITIAL VALUES
 struct projectile{
-	double m,cd,ar,v0x,v0y;
+	double m,cd,ar,v0x,v0y,x0,y0;
 };
 

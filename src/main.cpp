@@ -58,8 +58,8 @@ int main(int argc, char *argv[]) {
            v0x = p.v0x,  // x velocity change
            v0y = p.v0y,  // y velocity change
 
-           x0 = 0.0,  // x position change
-           y0 = 0.0,  // y position change
+           x0 = p.x0,  // x position change
+           y0 = p.y0,  // y position change
 
            t = 0.0,  // current time
 

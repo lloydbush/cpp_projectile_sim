@@ -11,6 +11,8 @@ int setVar(projectile &p, std::string var, std::string num) {
     else if (var == "ar") p.ar=numDbl;
     else if (var == "v0x") p.v0x=numDbl;
     else if (var == "v0y") p.v0y=numDbl;
+    else if (var == "x0") p.x0=numDbl;
+    else if (var == "y0") p.y0=numDbl;
     else {std::cout << "ERROR: invalid var in function setVar\n"; return 1;}
 
     return 0;
