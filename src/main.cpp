@@ -226,6 +226,7 @@ int main(int argc, char *argv[]) {
         << maxX << "\nmaxY = "
         << maxY << "\n=====\n";
 
+    // run python plot script
     std::string command = "python3 ";
     command += "plot.py ";
     command += file;
