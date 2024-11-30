@@ -32,8 +32,9 @@ void write(
         double maxY,
         std::string file);
 
-int readEnv(environment &e);
-int readProj(projectile &p);
+// int readEnv(environment &e);
+// int readProj(projectile &p);
+int readINI(environment &e, projectile &p);
 
 int logo();
 

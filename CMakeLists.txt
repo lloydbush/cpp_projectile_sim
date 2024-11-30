@@ -5,4 +5,5 @@ file(GLOB src "src/*.cpp")
 project(projectile_sim)
 
 add_executable(${PROJECT_NAME} ${src})
+target_link_libraries(${PROJECT_NAME} INIReader)
 

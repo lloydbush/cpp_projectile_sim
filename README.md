@@ -23,6 +23,7 @@ _v0y_=sin(a)\*v
 - GNU/Linux based distribution
 - gcc
 - cmake
+- libinih-dev
 - python3
     - matplotlib
     - pandas
