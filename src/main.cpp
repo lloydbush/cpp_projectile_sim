@@ -19,6 +19,8 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
+#include <stdlib.h>
+#include <unistd.h>
 
 #include "./header.h"
 
@@ -40,14 +42,41 @@ int main(int argc, char *argv[]) {
     std::signal(SIGINT, handle_interrupt);
     std::cout << "\033[?25l";  // hide terminal cursor
 
-    std::string file = argv[1];  // get filename from first command line arg
+    // parse command line arguments
+    int flags, opt;
+
+    flags = 0;
+    while ((opt = getopt(argc, argv, "f")) != -1) {
+        switch (opt) {
+            case 'f':
+                flags = 1;
+                break;
+            default: /* '?' */
+                std::cerr << "Usage: " << argv[0] << " [-f] filename\n";
+                exit(EXIT_FAILURE);
+        }
+    }
+
+    std::cout << "flags=" << flags << "; optind=" << optind << "\n";
+
+    if (optind >= argc) {
+        std::cerr << "Expected argument after options\n";
+        exit(EXIT_FAILURE);
+    }
+
+    std::string file = argv[optind];  // get filename
+    std::cout << "file argument = " << file << "\n";
+
 
     logo();  // print logo
 
     projectile p;  // make projectile
     environment e;  // make environment
-    readEnv(e);  // read the "environment.cfg" file
-    readProj(p);  // read the "projectile.cfg" file
+    // read variables from the ini file
+    if (readINI(e, p) != 0) {
+        std::cerr << "E: failed to parse INI file\n";
+        return 1;
+    }
 
     // initialise all the variables
     double g = e.g,  // gravitational acceleration
@@ -197,8 +226,16 @@ int main(int argc, char *argv[]) {
         << maxX << "\nmaxY = "
         << maxY << "\n=====\n";
 
+    std::string command = "python3 ";
+    command += "plot.py ";
+    command += file;
+
+    if (std::system(command.c_str()) != 0) {
+        std::cerr << "E: python script exited with error\n";
+    }
+
     logo();  // print logo
 
-    return 0;
+    exit(EXIT_SUCCESS);
 }
 
