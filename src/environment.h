@@ -1,6 +1,7 @@
+// Copyright 2024 lorax
 #pragma once
 
-//ENVIRONMENT INITIAL VALUES
+// environment struct
 struct environment{
 	double g,rho,dt;
 };

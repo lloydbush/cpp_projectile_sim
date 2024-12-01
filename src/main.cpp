@@ -19,8 +19,6 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
-#include <stdlib.h>
-#include <unistd.h>
 
 #include "./header.h"
 
@@ -79,56 +77,59 @@ int main(int argc, char *argv[]) {
     }
 
     // initialise all the variables
-    double g = e.g,  // gravitational acceleration
-          m = p.m,  // projectile mass
-          rho = e.rho,  // air density
-          cd = p.cd,  // projectile coefficient of drag
-          ar = p.ar,  // projectile cross sectional area
-          dt = e.dt,  // timestep
+    double
+    g = e.g,      // gravitational acceleration
+    m = p.m,      // projectile mass
+    rho = e.rho,  // air density
+    cd = p.cd,    // projectile coefficient of drag
+    ar = p.ar,    // projectile cross sectional area
+    dt = e.dt,    // timestep
 
-          v0x = p.v0x,  // x velocity change
-          v0y = p.v0y,  // y velocity change
+    v0x = p.v0x,  // x velocity change
+    v0y = p.v0y,  // y velocity change
 
-          x0 = p.x0,  // x position change
-          y0 = p.y0,  // y position change
+    x0 = p.x0,    // x position change
+    y0 = p.y0,    // y position change
 
-          t = 0.0,  // current time
+    t = 0.0,      // current time
 
-          x = x0,  // current x position
-          y = y0,  // current y position
+    x = x0,       // current x position
+    y = y0,       // current y position
 
-          vx = v0x,
-          vy = v0y,
+    vx = v0x,     // current x velocity
+    vy = v0y,     // current y velocity
 
-          ax = 0.0,  // current x acceleration
-          ay = 0.0,  // current y acceleration
+    ax = 0.0,     // current x acceleration
+    ay = 0.0,     // current y acceleration
 
-          fx = 0.0,  // current x force
-          fy = 0.0,  // current y force
+    fx = 0.0,     // current x force
+    fy = 0.0,     // current y force
 
-          fg = 0.0,  // current gravitational force
+    fg = 0.0,     // current gravitational force
 
-          fdx = 0.0,  // current x drag force
-          fdy = 0.0,  // current y drag force
+    fdx = 0.0,    // current x drag force
+    fdy = 0.0,    // current y drag force
 
-          maxX = 0.0,  // current maximum x position (flight distance)
-          maxY = 0.0;  // current maximum y position (maximum height)
+    maxX = 0.0,   // current maximum x position (flight distance)
+    maxY = 0.0;   // current maximum y position (maximum height)
 
     // initialise all the lists
     std::vector<double>
-       listT,  // time list
+    listT,  // time list
 
-       listX,  // x position list
-       listY,  // y position list
+    listX,  // x position list
+    listY,  // y position list
 
-       listVx,  // x velocity list
-       listVy,  // y velocity list
+    listVx,  // x velocity list
+    listVy,  // y velocity list
 
-       listAx,  // x acceleration list
-       listAy;  // y acceleration list
+    listAx,  // x acceleration list
+    listAy;  // y acceleration list
 
     std::time_t now = std::time(nullptr);
     std::time_t then = std::time(nullptr);
+    std::time_t start = std::time(nullptr);
+    std::time_t end = std::time(nullptr);
 
     // std::cout<<"hello world"<<std::endl;
 
@@ -219,6 +220,10 @@ int main(int argc, char *argv[]) {
         vx+=v0x;  // update x velocity
         vy+=v0y;  // update y velocity
     }
+
+    end = std::time(nullptr);
+
+    std::cout << "runtime = " << end - start << "\n";
 
     std::cout
         << "\n=====\nt = "

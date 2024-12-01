@@ -2,7 +2,10 @@
 
 # script to build the project
 
-mkdir ./build
+if [[ ! -f ./build ]]; then
+    mkdir ./build
+fi
+
 cd ./build
 
 if [[ "$?" == "0" ]]; then
@@ -11,13 +14,16 @@ else
     echo "E: can't enter dir ./build"
     exit 1
 fi
+
 echo "#########################"
+
 cmake ..
 
 if [[ "$?" != "0" ]]; then
     exit 1
 fi
 echo "#########################"
-make
-echo "#########################"
 
+make
+
+echo "#########################"

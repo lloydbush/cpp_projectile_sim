@@ -21,19 +21,18 @@
     << "ERROR(" << __FILE__ << ":" << __LINE__ << "): " << mssg << "\n";
 
 void write(
-        double t,
-        double x,
-        double y,
-        double vx,
-        double vy,
-        double ax,
-        double ay,
-        double maxX,
-        double maxY,
-        std::string file);
+    double t,
+    double x,
+    double y,
+    double vx,
+    double vy,
+    double ax,
+    double ay,
+    double maxX,
+    double maxY,
+    std::string file
+);
 
-// int readEnv(environment &e);
-// int readProj(projectile &p);
 int readINI(environment &e, projectile &p);
 
 int logo();

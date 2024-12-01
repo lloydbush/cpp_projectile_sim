@@ -16,13 +16,14 @@ void write(
         double maxX,
         double maxY,
         std::string file) {
-    static size_t loop = 0;
+    static bool first = true;
 
     file += ".csv";  // make .csv file from file
 
-    if (loop == 0) {
+    if (first) {
         std::ofstream writer(file);
         writer << "t,x,y,vx,vy,ax,ay\n";
+        first = false;
     }
 
     std::ofstream writer(file, std::ios::app);  // create writer object
@@ -44,6 +45,4 @@ void write(
         << "\n";
 
     writer.close();
-
-    loop++;
 }
